@@ -13,5 +13,5 @@ app.use(userRouter)
 app.use(ingredientRouter)
 
 app.listen(process.env.PORT, () => {
-    console.log('Server up and running on port: ' + port)
+    console.log('App running on ' + process.env.PORT)
 })
