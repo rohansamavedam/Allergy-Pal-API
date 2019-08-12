@@ -5,7 +5,7 @@ const router = new express.Router()
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)         //Creating a new user will add a new user to the db
-    try{                                    //Method with async await
+    try{                                   
         await user.save()
         const token = await user.generateAuthToken()
         res.status(201).send({user, token})
@@ -41,6 +41,16 @@ router.post('/users/logout', auth, async (req, res) => {
 
 router.get('/users/me', auth, (req, res) => {
     res.send(req.user)
+})
+
+router.delete('/users/me', auth, async (req, res) => {
+    try{
+        await req.user.remove() 
+        res.send(req.user)
+    }
+    catch(error){
+        res.status(500).send()
+    }
 })
 
 // router.post('/users/allergy', auth, async(req, res) => {
