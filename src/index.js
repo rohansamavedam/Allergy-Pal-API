@@ -6,14 +6,12 @@ const ingredientRouter = require('./routers/ingredient')
 
 const app = express()
 
-const port = 3000 || process.env.PORT
-
 app.use(cors())
 
 app.use(express.json())
 app.use(userRouter)
 app.use(ingredientRouter)
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log('Server up and running on port: ' + port)
 })
